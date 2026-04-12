@@ -1,8 +1,10 @@
 <p>Olá, {{name}}!</p>
-<input type="text" placeholder="Nome do produto" required><br>
-<input type="number" placeholder="Saldo" min="0" required>
+<form (ngSubmit)="addProduct()">
+    <input type="text" placeholder="Nome do produto" name="nome" [(ngModel)]="newProduct.nome" required><br>
+    <input type="number" placeholder="Saldo" min="0" name="saldo" [(ngModel)]="newProduct.saldo" required><br>
+    <button type="submit">Cadastrar Produto</button>
+</form>
 <br>
-<button (click)="submit()">Imprimir nota fiscal</button> <!--[attr.aria-label]="idButton"-->
 
 <button (click)="showProducts()">Mostrar produtos</button>
 

@@ -1,26 +1,50 @@
 import { Component, inject } from '@angular/core';
-import { SendProductForm } from '../../services/send-product-form';
-import { GetProducts } from '../../services/get-products';
+import { SendProductForm } from '../../services/stock-service/send-product-form';
+import { GetProducts } from '../../services/stock-service/get-products';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
-  sendFormService = inject(SendProductForm);
+  sendProductForm = inject(SendProductForm);
   getProducts = inject(GetProducts);
+  
   name = "Júlia";
-  idButton = "ifasd";
   mostrarNota = true;
-  listItems = ["nota 1", "nota2"];
+  listItems = ["nota1", "nota2"];
 
-  submit(){
-    this.sendFormService.sendFormInfo("enviando informação");
+  newProduct = {
+    nome: "",
+    saldo: 0,
+  };
+
+  addProduct(){
+
+    this.sendProductForm.saveProduct(this.newProduct).subscribe({
+      next: (response) => {
+        console.log("Produto salvo com sucesso! Resposta: ", response);
+      },
+      error: (error) => {
+        console.error("Erro ao adicionar produto: ", error);
+      }
+    });
   }
 
   showProducts(){
-    console.log(this.getProducts.getProducts());
+    this.getProducts.getProducts().subscribe({
+    next: (dados) => {
+      console.log('Dados recebidos da API:', dados);
+    },
+    error: (erro) => {
+      console.error('Ocorreu um erro na conexão:', erro);
+    },
+    complete: () => {
+      console.log('Requisição finalizada com sucesso.');
+    }
+  });
   }
 }
