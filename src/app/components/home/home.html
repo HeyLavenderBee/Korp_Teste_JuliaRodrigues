@@ -1,0 +1,15 @@
+<p>Olá, {{name}}!</p>
+<input type="text" placeholder="Nome do produto" required><br>
+<input type="number" placeholder="Saldo" min="0" required>
+<br>
+<button (click)="submit()">Imprimir nota fiscal</button> <!--[attr.aria-label]="idButton"-->
+
+<button (click)="showProducts()">Mostrar produtos</button>
+
+@if(mostrarNota){
+    <h2>Mostrar nota</h2>
+}
+
+@for(item of listItems; track item){
+    <p>{{item}}</p>
+}
