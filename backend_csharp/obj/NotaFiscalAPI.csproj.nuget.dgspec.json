@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\julia\\Desktop\\NotaFiscalAPI\\NotaFiscalAPI.csproj": {}
+    "C:\\Users\\julia\\Desktop\\Korp_Teste_JuliaRodrigues\\Korp_Teste_JuliaRodrigues\\backend_csharp\\NotaFiscalAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\julia\\Desktop\\NotaFiscalAPI\\NotaFiscalAPI.csproj": {
+    "C:\\Users\\julia\\Desktop\\Korp_Teste_JuliaRodrigues\\Korp_Teste_JuliaRodrigues\\backend_csharp\\NotaFiscalAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\julia\\Desktop\\NotaFiscalAPI\\NotaFiscalAPI.csproj",
+        "projectUniqueName": "C:\\Users\\julia\\Desktop\\Korp_Teste_JuliaRodrigues\\Korp_Teste_JuliaRodrigues\\backend_csharp\\NotaFiscalAPI.csproj",
         "projectName": "NotaFiscalAPI",
-        "projectPath": "C:\\Users\\julia\\Desktop\\NotaFiscalAPI\\NotaFiscalAPI.csproj",
+        "projectPath": "C:\\Users\\julia\\Desktop\\Korp_Teste_JuliaRodrigues\\Korp_Teste_JuliaRodrigues\\backend_csharp\\NotaFiscalAPI.csproj",
         "packagesPath": "C:\\Users\\julia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\julia\\Desktop\\NotaFiscalAPI\\obj\\",
+        "outputPath": "C:\\Users\\julia\\Desktop\\Korp_Teste_JuliaRodrigues\\Korp_Teste_JuliaRodrigues\\backend_csharp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

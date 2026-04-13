@@ -1,0 +1,21 @@
+<table class="product-table">
+    <thead>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Saldo</th>
+        <th>Ações</th>
+    </thead>
+    <tbody>
+        @for(product of (products$ | async); track product.codigo){
+            <tr>
+                <td>{{product.codigo}}</td>
+                <td>{{product.nome}}</td>
+                <td>{{product.saldo}}</td>
+                <td class="table-actions">
+                    <button>Editar</button>
+                    <button>Deletar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

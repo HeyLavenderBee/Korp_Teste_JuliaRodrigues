@@ -1,17 +1,13 @@
-<p>Olá, {{name}}!</p>
-<form (ngSubmit)="addProduct()">
-    <input type="text" placeholder="Nome do produto" name="nome" [(ngModel)]="newProduct.nome" required><br>
-    <input type="number" placeholder="Saldo" min="0" name="saldo" [(ngModel)]="newProduct.saldo" required><br>
-    <button type="submit">Cadastrar Produto</button>
-</form>
-<br>
+<div class="home">
+    <h1>Sistema de Gestão de Notas Fiscais</h1>
+    <p>Olá, {{name}}!</p>
+    <form (ngSubmit)="addProduct()" class="product-form">
+        <label for="nome">Nome do produto</label>
+        <input class="text-input" type="text" id="nome" placeholder="Nome do produto" name="nome" [(ngModel)]="newProduct.nome" required><br>
+        <label for="saldo">Saldo</label>
+        <input class="text-input" type="number" id="saldo" placeholder="Saldo" min="0" name="saldo" [(ngModel)]="newProduct.saldo" required><br>
+        <button class="submit-button" type="submit">Cadastrar Produto</button>
+    </form>
 
-<button (click)="showProducts()">Mostrar produtos</button>
-
-@if(mostrarNota){
-    <h2>Mostrar nota</h2>
-}
-
-@for(item of listItems; track item){
-    <p>{{item}}</p>
-}
+    <app-products-table></app-products-table>
+</div>

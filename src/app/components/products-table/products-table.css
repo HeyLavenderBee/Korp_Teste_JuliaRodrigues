@@ -1,0 +1,13 @@
+.product-table{
+    width: 50rem;
+    margin: 10px;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: rgb(75, 92, 108);
+}
+
+.table-actions{
+    display: flex;
+    justify-content: center;
+    gap: .5rem;
+}
