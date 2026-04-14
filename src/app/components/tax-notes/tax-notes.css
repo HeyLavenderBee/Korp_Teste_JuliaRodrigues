@@ -1,0 +1,14 @@
+.card{
+    width: 22rem;
+    height: 12rem;
+    background-color: #A2ABC8;
+    padding: .6rem 1rem;
+    border-radius: 0.8rem;
+}
+
+.card-row{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}

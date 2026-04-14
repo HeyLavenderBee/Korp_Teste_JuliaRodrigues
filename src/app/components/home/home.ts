@@ -1,16 +1,20 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { SendProductForm } from '../../services/stock-service/send-product-form';
 import { GetProducts } from '../../services/stock-service/get-products';
 import { FormsModule } from '@angular/forms';
 import { ProductsTable } from '../products-table/products-table';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, ProductsTable],
+  imports: [FormsModule, ProductsTable, Header],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
 export class Home {
+  constructor(private router: Router) {}
+
   sendProductForm = inject(SendProductForm);
   getProducts = inject(GetProducts);
 
@@ -18,10 +22,10 @@ export class Home {
     nome: "",
     saldo: 0,
   };
-  
-  name = "Júlia";
-  mostrarNota = true;
-  listItems = ["nota1", "nota2"];
+
+  goToTaxNotes(){
+    this.router.navigate(['/notas-fiscais']);
+  }
 
   addProduct(){
     if(this.newProduct.nome == "" || this.newProduct.saldo < 0){
