@@ -1,7 +1,7 @@
 <table class="product-table">
     <thead>
         <th>Código</th>
-        <th>Nome</th>
+        <th>Descrição</th>
         <th>Saldo</th>
         <th>Ações</th>
     </thead>
@@ -9,7 +9,7 @@
         @for(product of (products$ | async); track product.codigo){
             <tr>
                 <td>{{product.codigo}}</td>
-                <td>{{product.nome}}</td>
+                <td>{{product.descricao}}</td>
                 <td>{{product.saldo}}</td>
                 <td class="table-actions">
                     <button>Editar</button>

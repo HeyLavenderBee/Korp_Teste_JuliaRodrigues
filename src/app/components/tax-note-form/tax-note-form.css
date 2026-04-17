@@ -1,0 +1,31 @@
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.card{
+    padding: 1.5rem;
+    background-color: #A2ABC8;
+    border-radius: 0.8rem;
+}
+
+.card h3{
+    margin-top: 0;
+}
+
+.product-select-container div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card input[type="number"]{
+    width: 3rem;
+}
+
+.product-select-container{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

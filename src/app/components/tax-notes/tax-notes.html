@@ -1,6 +1,26 @@
 <app-header></app-header>
 <main>
     <h1>Notas Fiscais</h1>
+    <button (click)="goToTaxNoteForms()">Criar nota fiscal</button>
+    <div class="card-row">
+        @for(taxNote of (taxNotes$ | async); track taxNote.numeracao){
+            <div class="card">
+                <h4>Nota fiscal {{taxNote.numeracao}}</h4>
+                <ul>
+                    <li>Sabonete x2</li>
+                    <li>Maçã x4</li>
+                </ul>
+                @if(taxNote.status == "A"){
+                    <p>Aberta</p>
+                }
+                @else {
+                    <p>Fechada</p>
+                }
+                <button (click)="goToTaxNoteDetails(taxNote.numeracao)">Ver</button>
+                <button>Imprimir</button>
+            </div>
+        }
+    </div>
     <div class="card-row">
         <div class="card">
             <h4>Nota fiscal 03852546892</h4>
@@ -9,6 +29,8 @@
                 <li>Sabonete</li>
                 <li>Maçã</li>
             </ul>
+            <button (click)="goToTaxNoteDetails('1')">Ver</button>
+            <button>Imprimir</button>
         </div>
         <div class="card">
             <h4>Nota fiscal 03852546892</h4>

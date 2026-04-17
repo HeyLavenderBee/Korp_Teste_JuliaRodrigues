@@ -6,11 +6,11 @@ import { Product } from '../product';
   providedIn: 'root',
 })
 export class SendProductForm {
-  private apiUrl = 'https://localhost:7089/products'; //url da api
+  private apiUrl = 'https://localhost:7089/api/product/createproduct'; //url da api
 
   constructor(private http: HttpClient){ }
 
   saveProduct(product: Product){
-    return this.http.post("https://localhost:7089/products", product);
+    return this.http.post(this.apiUrl, product);
   }
 }

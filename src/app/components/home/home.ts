@@ -19,7 +19,7 @@ export class Home {
   getProducts = inject(GetProducts);
 
   newProduct = {
-    nome: "",
+    descricao: "",
     saldo: 0,
   };
 
@@ -28,7 +28,7 @@ export class Home {
   }
 
   addProduct(){
-    if(this.newProduct.nome == "" || this.newProduct.saldo < 0){
+    if(this.newProduct.descricao == "" || this.newProduct.saldo < 0){
       alert("Por favor, preencha os campos corretamente!");
       return;
     }
@@ -36,7 +36,7 @@ export class Home {
       next: (response) => {
         console.log("Produto salvo com sucesso! Resposta: ", response);
         this.newProduct = {
-          nome: "",
+          descricao: "",
           saldo: 0
         }
         this.getProducts.refreshProducts();

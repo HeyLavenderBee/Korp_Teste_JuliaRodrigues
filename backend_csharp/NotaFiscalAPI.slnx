@@ -1,3 +1,4 @@
 <Solution>
-  <Project Path="NotaFiscalAPI.csproj" />
+  <Project Path="../NotasFiscaisAPI/NotasFiscaisAPI.csproj" Id="de02f0cd-5f11-46cb-9627-baa4809e744d" />
+  <Project Path="ProdutosAPI.csproj" />
 </Solution>

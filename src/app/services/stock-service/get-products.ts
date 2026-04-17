@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class GetProducts {
-  private apiUrl = 'https://localhost:7089/products'; //url da api
+  private apiUrl = 'https://localhost:7089/api/product/getproducts'; //url da api
   private productsSubject = new BehaviorSubject<any[]>([]); //para verificar alteração nos dados
   products$ = this.productsSubject.asObservable();
 

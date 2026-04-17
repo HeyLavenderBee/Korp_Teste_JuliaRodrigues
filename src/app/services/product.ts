@@ -1,5 +1,5 @@
 export interface Product {
   codigo?: string;
-  nome: string;
+  descricao: string;
   saldo: number;
 }

@@ -15,7 +15,7 @@ export class Header {
   }
 
   goToProducts(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/produtos']);
   }
 
   goToTaxNotes(){

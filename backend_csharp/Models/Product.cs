@@ -1,18 +1,26 @@
-﻿namespace NotaFiscalAPI.Models
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NotaFiscalAPI.Models
 {
-    public class Product
+  [Table("produtos")]
+  public class Product
+  {
+    [Key]
+    [Column("codigo")]
+    public int Codigo { get; set; }
+
+    [Column("descricao")]
+    public string Descricao { get; set; }
+
+    [Column("saldo")]
+    public int Saldo { get; set; }
+
+    public Product(int codigo, string descricao, int saldo)
     {
-        public Guid Codigo { get; set; }
-        public string Nome { get; set; }
-        public int Saldo { get; set; }
-
-        public Product() { }
-
-        public Product(Guid codigo, string nome, int saldo)
-        {
-            Codigo = codigo;
-            Nome = nome;
-            Saldo = saldo;
-        }
+      Codigo = codigo;
+      Descricao = descricao;
+      Saldo = saldo;
     }
+  }
 }
