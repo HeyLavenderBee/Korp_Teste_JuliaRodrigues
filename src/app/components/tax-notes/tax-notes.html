@@ -1,78 +1,22 @@
 <app-header></app-header>
 <main>
     <h1>Notas Fiscais</h1>
-    <button (click)="goToTaxNoteForms()">Criar nota fiscal</button>
-    <div class="card-row">
+    <button class="button" (click)="goToTaxNoteForms()">Criar nota fiscal</button>
+    <div class="card-grid">
         @for(taxNote of (taxNotes$ | async); track taxNote.numeracao){
             <div class="card">
-                <h4>Nota fiscal {{taxNote.numeracao}}</h4>
-                <ul>
-                    <li>Sabonete x2</li>
-                    <li>Maçã x4</li>
-                </ul>
+                <h4>Nota fiscal {{taxNote.numeracao.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}}</h4>
                 @if(taxNote.status == "A"){
-                    <p>Aberta</p>
+                    <p class="open">Aberta</p>
                 }
                 @else {
-                    <p>Fechada</p>
+                    <p class="closed">Fechada</p>
                 }
-                <button (click)="goToTaxNoteDetails(taxNote.numeracao)">Ver</button>
-                <button>Imprimir</button>
+                <div class="button-row">
+                    <button class="card-button" (click)="goToTaxNoteDetails(taxNote.numeracao, taxNote.status)">Ver</button>
+                    <button class="card-button" (click)="goToTaxNoteDetails(taxNote.numeracao, taxNote.status)">Imprimir</button>
+                </div>
             </div>
         }
-    </div>
-    <div class="card-row">
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-            <button (click)="goToTaxNoteDetails('1')">Ver</button>
-            <button>Imprimir</button>
-        </div>
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-        </div>
-    </div>
-    <div class="card-row">
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h4>Nota fiscal 03852546892</h4>
-            <p>02/03/2026</p>
-            <ul>
-                <li>Sabonete</li>
-                <li>Maçã</li>
-            </ul>
-        </div>
     </div>
 </main>

@@ -20,8 +20,8 @@ export class TaxNotes {
 
   constructor (private router: Router) {}
 
-  goToTaxNoteDetails(id: string){
-    this.router.navigate(['/notas-fiscais', id]);
+  goToTaxNoteDetails(id: string, status: string){
+    this.router.navigate(['/notas-fiscais', id], {queryParams: {status: status}});
   }
 
   goToTaxNoteForms(){

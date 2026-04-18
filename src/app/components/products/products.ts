@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Header } from '../header/header';
+import { Router } from '@angular/router';
 import { ProductsTable } from '../products-table/products-table';
 
 @Component({
@@ -8,4 +9,10 @@ import { ProductsTable } from '../products-table/products-table';
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
-export class Products {}
+export class Products {
+  constructor (private router: Router) {}
+
+  goToProductForm(){
+    this.router.navigate(['/criar-produto']);
+  }
+}

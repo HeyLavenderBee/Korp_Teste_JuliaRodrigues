@@ -3,7 +3,6 @@
         <th>Código</th>
         <th>Descrição</th>
         <th>Saldo</th>
-        <th>Ações</th>
     </thead>
     <tbody>
         @for(product of (products$ | async); track product.codigo){
@@ -11,10 +10,6 @@
                 <td>{{product.codigo}}</td>
                 <td>{{product.descricao}}</td>
                 <td>{{product.saldo}}</td>
-                <td class="table-actions">
-                    <button>Editar</button>
-                    <button>Deletar</button>
-                </td>
             </tr>
         }
     </tbody>

@@ -1,9 +1,13 @@
 .product-table{
-    width: 50rem;
-    margin: 10px;
-    border-radius: 8px;
+    min-width: 30rem;
+    margin: 2rem;
+    border-radius: 0.8rem;
     padding: 1rem;
     background-color: #b2bad5;
+}
+
+td{
+    text-align: center;
 }
 
 .table-actions{

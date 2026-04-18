@@ -5,3 +5,15 @@
     padding: 1rem;
     margin: 1rem;
 }
+
+.open{
+    color: rgb(10, 85, 10);
+    font: inherit;
+    font-weight: 500;
+}
+
+.closed{
+    color: rgb(130, 8, 8);
+    font: inherit;
+    font-weight: 500;
+}

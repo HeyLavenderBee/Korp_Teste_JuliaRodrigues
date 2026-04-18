@@ -1,54 +1,115 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, ChangeDetectorRef, OnInit } from '@angular/core';
 import { Header } from '../header/header';
 import { Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 import { GetTaxNotes } from '../../services/invoicing-service/get-tax-notes';
 import { SendTaxNoteForm } from '../../services/invoicing-service/send-tax-note-form';
+import { GetProducts } from '../../services/stock-service/get-products';
 
 @Component({
   selector: 'app-tax-note-form',
-  imports: [Header],
+  imports: [Header, AsyncPipe],
   templateUrl: './tax-note-form.html',
   styleUrl: './tax-note-form.css',
 })
 export class TaxNoteForm {
+  private cdr = inject(ChangeDetectorRef);
+  getProducts = inject(GetProducts);
   getTaxNotes = inject(GetTaxNotes);
   sendTaxNoteForm = inject(SendTaxNoteForm);
   taxNotes$ = this.getTaxNotes.taxNotes$;
-  response = "";
+  products$ = inject(GetProducts).getProducts();
+  selectedItems: { produtoId: number; quantidade: number; descricao: string }[] = [];
+  currentId: string = '000.000.001';
 
-  constructor (private router: Router) {}
+  constructor(private router: Router) {}
 
   newTaxNote = {
-    numeracao: "000000001",
-    status: "A",
+    numeracao: '000000001',
+    status: 'A',
+    items: []
   };
 
-  ngOnInit(): void{
+  //quando a página é aberta, faz o cálculo de qual a próxima numeração para uma nota fiscal
+  ngOnInit(): void {
     this.getTaxNotes.taxNotes$.subscribe({
       next: (dados) => {
-        this.response = JSON.stringify(dados, null, 2);
-        console.log(this.response)
+        const response = JSON.stringify(dados, null, 2); //transforma o json em uma string
+        const responseArray = response.split('{'); //transforma ele em um array
+        var numeracaoFor: number = 0;
+        if (
+          responseArray[responseArray.length - 1].includes('numeracao') &&
+          responseArray.length - 1
+        ) {
+          numeracaoFor = +responseArray[responseArray.length - 1].substring(19, 28); //pegar toda a numeração da última nota fiscal
+          numeracaoFor++; //adiciona mais 1
+          let nextNumeracao = numeracaoFor + '';
+          while (nextNumeracao.length != 9) {
+            nextNumeracao = '0' + nextNumeracao;
+          }
+
+          this.currentId = nextNumeracao.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+          this.cdr.detectChanges();
+
+          //por último, adiciona a numeração gerada no newTaxNotes, para poder fazer o post
+          this.newTaxNote = {
+            numeracao: nextNumeracao,
+            status: 'A',
+            items: []
+          };
+        }
       },
-      error: (err) => console.error("Erro ao buscar notas:", err)
+      error: (err) => console.error('Erro ao buscar notas:', err),
     });
-    
+
     this.getTaxNotes.refreshTaxNotes();
   }
 
-  createTaxNote(){
-    this.sendTaxNoteForm.saveTaxNote(this.newTaxNote).subscribe({
+  checkProduct(product: any, checked: boolean | null, quantity: string | null) {
+    const index = this.selectedItems.findIndex((i) => i.produtoId === product.codigo);
+    const exists = index > -1;
+
+    let isChecked = checked !== null ? checked : exists ? true : false;
+    let qty = quantity !== null ? Number(quantity) : exists ? this.selectedItems[index].quantidade : 0;
+
+    if (isChecked) {
+      if (exists) {
+        this.selectedItems[index].quantidade = qty;
+      } else {
+        this.selectedItems.push({
+          produtoId: product.codigo,
+          descricao: product.descricao,
+          quantidade: qty,
+        });
+      }
+    } else {
+      // Se não estiver marcado, remove da lista
+      if (exists) {
+        this.selectedItems.splice(index, 1);
+      }
+    }
+    console.log(this.selectedItems);
+  }
+
+  createTaxNote() {
+    const payload = {
+      ...this.newTaxNote,
+      itens: this.selectedItems
+    };
+    this.sendTaxNoteForm.saveTaxNote(payload).subscribe({
       next: (response) => {
-        console.log("Nota fiscal salva com sucesso! Resposta: ", response);
+        console.log('Nota fiscal salva com sucesso! Resposta: ', response);
         this.newTaxNote = {
-          numeracao: "",
-          status: "A"
-        }
+          numeracao: '',
+          status: 'A',
+          items: []
+        };
         this.getTaxNotes.refreshTaxNotes();
         this.router.navigate(['/notas-fiscais']);
       },
       error: (error) => {
-        console.error("Erro ao adicionar nota fiscal: ", error);
-      }
-    })
+        console.error('Erro ao adicionar nota fiscal: ', error);
+      },
+    });
   }
 }

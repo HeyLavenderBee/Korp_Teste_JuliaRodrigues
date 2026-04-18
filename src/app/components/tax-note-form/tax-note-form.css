@@ -5,6 +5,7 @@
 }
 
 .card{
+    width: 20rem;
     padding: 1.5rem;
     background-color: #A2ABC8;
     border-radius: 0.8rem;
@@ -20,8 +21,16 @@
     align-items: center;
 }
 
+.checkbox{
+    border-radius: 0.8rem;
+    background-color: rgb(80, 112, 148);
+}
+
 .card input[type="number"]{
     width: 3rem;
+    border-radius: 0.3rem;
+    border: none;
+    padding: 0.2rem;
 }
 
 .product-select-container{

@@ -21,3 +21,16 @@ main{
 button{
     cursor: pointer;
 }
+
+.button{
+    font-weight: 500;
+    background-color: #3550A2;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
+    color: white;
+    border: none;
+}
+
+.button:hover{
+    background-color: #1c347c;
+}

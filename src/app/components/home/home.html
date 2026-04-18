@@ -1,15 +1,11 @@
 <app-header></app-header>
 <main class="home">
     <h1>Sistema de Gestão de Notas Fiscais</h1>
-    <form (ngSubmit)="addProduct()" class="product-form">
-        <label for="nome">Descrição do produto</label>
-        <input class="text-input" type="text" id="nome" placeholder="Descrição do produto" name="nome" [(ngModel)]="newProduct.descricao" required><br>
-        <label for="saldo">Saldo</label>
-        <input class="text-input" type="number" id="saldo" placeholder="Saldo" min="0" name="saldo" [(ngModel)]="newProduct.saldo" required><br>
-        <button class="submit-button" type="submit">Cadastrar Produto</button>
-    </form>
 
-    <button (click)="goToTaxNotes()">Ver notas fiscais</button>
+    <p>Bem-vindo! Escolha uma opção para consultar.</p>
 
-    <app-products-table></app-products-table>
+    <div class="button-holder">
+        <button class="button" (click)="goToTaxNotes()">Ver notas fiscais</button>
+        <button class="button" (click)="goToProducts()">Ver produtos</button>
+    </div>
 </main>
