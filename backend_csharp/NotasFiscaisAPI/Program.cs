@@ -12,10 +12,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy("AllowAngular",
-      policy => policy.WithOrigins("http://localhost:4200")
-                      .AllowAnyMethod()
-                      .AllowAnyHeader());
+  options.AddPolicy("AngularPolicy", policy =>
+  {
+    policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
+          .AllowAnyHeader()
+          .AllowAnyMethod();
+  });
 });
 
 var app = builder.Build();
@@ -27,9 +29,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.UseCors("AngularPolicy");
 
-app.UseCors("AllowAngular");
+app.UseAuthorization();
 
 app.MapControllers();
 

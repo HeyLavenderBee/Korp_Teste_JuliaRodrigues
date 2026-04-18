@@ -1,0 +1,5 @@
+./backend_csharp/vs
+database.sql
+.vs/
+**/[Bb]in/
+**/[Oo]bj/

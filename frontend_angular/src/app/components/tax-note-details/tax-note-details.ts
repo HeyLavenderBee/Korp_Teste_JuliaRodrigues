@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
+import { Router } from '@angular/router';
 import { Header } from '../header/header';
 import { EditTaxNote } from '../../services/invoicing-service/edit-tax-note';
 
@@ -12,7 +13,7 @@ import { EditTaxNote } from '../../services/invoicing-service/edit-tax-note';
 export class TaxNoteDetails {
   editTaxNote = inject(EditTaxNote);
 
-  constructor (private route: ActivatedRoute){}
+  constructor (private route: ActivatedRoute, private router: Router){}
   taxNoteId: string | null = "";
   taxNoteStatus: string = "";
 
@@ -38,7 +39,8 @@ export class TaxNoteDetails {
     else{
       this.editTaxNote.closeTaxNote(this.taxNote).subscribe({
         next: (response) => {
-          console.log("Nota fiscal foi fechada. Resposta: ", response);
+          alert("Nota fiscal foi fechada com sucesso!");
+          this.router.navigate(['/notas-fiscais']);
         },
         error: (error) => {
           console.log("Ocorreu um erro ao fechar a nota fiscal. Erro: ", error);

@@ -1,14 +1,12 @@
 <app-header></app-header>
 <main>
-    <h1>Nota fiscal 
-        <h1>Nota fiscal
-            @if(taxNoteId != null){
-                {{taxNoteId.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}}
-            }
-            @else {
-                {{taxNoteId}}
-            }
-        </h1>
+    <h1>Nota fiscal
+        @if(taxNoteId != null){
+            {{taxNoteId.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}}
+        }
+        @else {
+            {{taxNoteId}}
+        }
     </h1>
     @if(taxNoteStatus == "A"){
         <h4 class="open">Aberto</h4>

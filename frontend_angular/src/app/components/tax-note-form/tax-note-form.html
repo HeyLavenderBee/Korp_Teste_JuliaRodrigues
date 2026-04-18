@@ -1,0 +1,11 @@
+<app-header></app-header>
+<main>
+  <h1>Nova Nota Fiscal</h1>
+
+  <div class="row">
+    <div class="card">
+      <h3>Nota fiscal n° {{currentId.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}}</h3>
+      <button class="button" (click)="createTaxNote()">Abrir nota</button>
+    </div>
+  </div>
+</main>

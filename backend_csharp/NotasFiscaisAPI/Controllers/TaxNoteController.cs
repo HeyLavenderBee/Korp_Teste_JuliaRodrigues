@@ -7,7 +7,7 @@ namespace NotasFiscaisAPI.Controllers
 {
   [ApiController]
   [Route("api/[controller]")]
-  [EnableCors("AllowAngular")]
+  [EnableCors("AngularPolicy")]
   public class TaxNoteController : ControllerBase
   {
     private readonly AppDbContext _context;

@@ -26,8 +26,7 @@ export class TaxNoteForm {
 
   newTaxNote = {
     numeracao: '000000001',
-    status: 'A',
-    items: []
+    status: 'A'
   };
 
   //quando a página é aberta, faz o cálculo de qual a próxima numeração para uma nota fiscal
@@ -55,7 +54,6 @@ export class TaxNoteForm {
           this.newTaxNote = {
             numeracao: nextNumeracao,
             status: 'A',
-            items: []
           };
         }
       },
@@ -65,44 +63,13 @@ export class TaxNoteForm {
     this.getTaxNotes.refreshTaxNotes();
   }
 
-  checkProduct(product: any, checked: boolean | null, quantity: string | null) {
-    const index = this.selectedItems.findIndex((i) => i.produtoId === product.codigo);
-    const exists = index > -1;
-
-    let isChecked = checked !== null ? checked : exists ? true : false;
-    let qty = quantity !== null ? Number(quantity) : exists ? this.selectedItems[index].quantidade : 0;
-
-    if (isChecked) {
-      if (exists) {
-        this.selectedItems[index].quantidade = qty;
-      } else {
-        this.selectedItems.push({
-          produtoId: product.codigo,
-          descricao: product.descricao,
-          quantidade: qty,
-        });
-      }
-    } else {
-      // Se não estiver marcado, remove da lista
-      if (exists) {
-        this.selectedItems.splice(index, 1);
-      }
-    }
-    console.log(this.selectedItems);
-  }
-
   createTaxNote() {
-    const payload = {
-      ...this.newTaxNote,
-      itens: this.selectedItems
-    };
-    this.sendTaxNoteForm.saveTaxNote(payload).subscribe({
+    this.sendTaxNoteForm.saveTaxNote(this.newTaxNote).subscribe({
       next: (response) => {
         console.log('Nota fiscal salva com sucesso! Resposta: ', response);
         this.newTaxNote = {
           numeracao: '',
           status: 'A',
-          items: []
         };
         this.getTaxNotes.refreshTaxNotes();
         this.router.navigate(['/notas-fiscais']);
